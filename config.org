@@ -1,4 +1,139 @@
 #+TITLE: GNU Emacs Configuration
+#+AUTHOR: cdrmack
 #+STARTUP: overview
 
 This is my GNU Emacs configuration file, written in org and... Emacs of course.
+
+* General Settings
+
+I want my Emacs to start with an empty =*scratch*= buffer.
+This is why I disable the startup-message.
+
+#+begin_src emacs-lisp
+  (setq inhibit-startup-message t)
+  (setq initial-scratch-message "")
+#+end_src
+
+I use a separate file for storing Emacs' customization information.
+By default it's stored in the init file specified by the =user-init-file= variable.
+However it can be changed by modyfing the =custom-file= variable.
+
+#+begin_src emacs-lisp
+  (setq custom-file
+	(expand-file-name "custom.el" user-emacs-directory))
+  (load custom-file 'noerror 'nomessage)
+#+end_src
+
+Use =<escape>= globally to exit the current "mode".
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+#+end_src
+
+Flash the screen when I do something stupid. Still not sure if I like it.
+
+#+begin_src emacs-lisp
+  (setq visible-bell t)
+#+end_src
+
+I am also too lazy to write =yes= or =no= in different prompts.
+The following alias allows me to simply type =y= or =n= when asked.
+
+#+begin_src emacs-lisp
+  (defalias 'yes-or-no-p 'y-or-n-p)
+#+end_src
+
+If a file changes on the disk I want Emacs to detect that and refresh my buffer automatically.
+Same goes when I am currently in the =dired-mode= and files' structure changes.
+
+#+begin_src emacs-lisp
+  (global-auto-revert-mode t)
+  (add-hook 'dired-mode-hook 'auto-revert-mode)
+#+end_src
+
+=recentf-mode= - when enabled I can check the recently operated files with =M-x recentf-open-files=.
+
+#+begin_src emacs-lisp
+  (recentf-mode t)
+#+end_src
+
+Save minibuffer history to the =savehist-file=.
+I can then use =M-n= and =M-p= in the minibuffer to scroll through it.
+
+#+begin_src emacs-lisp
+  (setq history-length 25)
+  (savehist-mode t)
+#+end_src
+
+By default =zap-up-to-char= removes text from the current cursor position to a given char... including the char.
+I do not want that. Please leave this poor char alone!
+
+#+begin_src emacs-lisp
+  (autoload 'zap-up-to-char "misc"
+    "Kill up to, but not including ARGth occurrence of CHAR." t)
+  (global-set-key (kbd "M-z") 'zap-up-to-char)
+#+end_src
+
+=saveplace= is a built-in package that allows saving the cursor position in a file.
+When I reopen the same file later on, the coursor will be set in the saved position.
+
+#+begin_src emacs-lisp
+  (save-place-mode t)
+#+end_src
+
+I like to know what time it is.
+
+#+begin_src emacs-lisp
+  (display-time-mode t)
+#+end_src
+
+Store autosave files in a specific directory.
+
+#+begin_src emacs-lisp
+  (setq auto-save-file-name-transforms
+	`((".*" ,(concat user-emacs-directory "auto-save/") t)))
+#+end_src
+
+Same for the backup files.
+
+#+begin_src emacs-lisp
+  (setq backup-by-copying t
+	backup-directory-alist `(("." . (concat user-emacs-directory "backups/")))
+	delete-old-versions t
+	kept-new-versions 6
+	kept-old-versions 2)
+#+end_src
+
+** Packages Repositories
+
+In Emacs you can use more than one repository to download packages.
+Repositories are stored in the variable called =package-archives=.
+
+#+begin_src emacs-lisp
+  (require 'package)
+  (setq package-archives '(("elpa" . "https://elpa.gnu.org/packages/")
+			   ("melpa" . "https://melpa.org/packages/")
+			   ("org" . "https://orgmode.org/elpa/")))
+
+  (package-initialize)
+
+  (unless package-archive-contents
+    (package-refresh-contents))
+#+end_src
+
+I use =use-package= to keep all my packages clean and sexy.
+Before I will use it I need to install it though since it's not a built-in package.
+
+#+begin_src emacs-lisp
+  (unless (package-installed-p 'use-package)
+    (package-install 'use-package))
+
+  (require 'use-package)
+#+end_src
+
+The =:ensure= keyword causes the package to be installed automatically if not already present in the system.
+The variable below makes sure that setting is set by default for all packages.
+
+#+begin_src emacs-lisp
+  (setq use-package-always-ensure t)
+#+end_src
