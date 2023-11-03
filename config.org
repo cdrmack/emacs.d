@@ -1,0 +1,4 @@
+#+TITLE: GNU Emacs Configuration
+#+STARTUP: overview
+
+This is my GNU Emacs configuration file, written in org and... Emacs of course.
