@@ -137,3 +137,147 @@ The variable below makes sure that setting is set by default for all packages.
 #+begin_src emacs-lisp
   (setq use-package-always-ensure t)
 #+end_src
+
+* Look
+
+I like to have more than less space for my buffers.
+This is why I disable menu-bar, tool-bar and scroll-bars.
+
+#+begin_src emacs-lisp
+  (menu-bar-mode 0)
+  (tool-bar-mode 0)
+  (scroll-bar-mode 0)
+#+end_src
+
+I also like to see line numbers always (almost) visible.
+
+#+begin_src emacs-lisp
+  (setq column-number-mode t)
+  (setq line-number-mode t)
+
+  (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+  (setq-default display-line-numbers-width 3)
+#+end_src
+
+I use doom-palenight theme.
+
+#+begin_src emacs-lisp
+  (use-package doom-themes
+    :init
+    (load-theme 'doom-palenight t))
+#+end_src
+
+Use and format various icon fonts withing Emacs.
+Run =M-x all-the-icons-install-fonts= when on a new machine.
+
+#+begin_src emacs-lisp
+  (use-package all-the-icons)
+#+end_src
+
+Highlight the current line.
+
+#+begin_src emacs-lisp
+  (global-hl-line-mode 1)
+#+end_src
+
+In my opinion font is a really important thing. I used to look at the code and wonder:
+
+#+begin_quote
+Is it a big O or 0?
+Is it l (small L) or maybe I (capital i)?
+#+end_quote
+
+Well... not anymore! I highly encourage you to take your time and find a font that suits your needs.
+
+I'm currently testing =Fira Code=. On FreeBSD it can be installed via =pkg(8)=.
+
+#+begin_src shell
+  pkg install firacode
+#+end_src
+
+#+begin_src emacs-lisp
+  (set-face-attribute 'default nil
+		      :family "Fira Code"
+		      :height 120
+		      :weight 'normal
+		      :width 'normal)
+#+end_src
+
+Emojis... 👀
+
+#+begin_src emacs-lisp
+  (set-fontset-font t 'unicode "Symbola" nil 'prepend)
+#+end_src
+
+Don't use dialog boxes. I prefer working with the keyboard.
+
+#+begin_src emacs-lisp
+  (setq use-dialog-box nil)
+#+end_src
+
+Fancy mode-line.
+
+#+begin_src emacs-lisp
+  (use-package doom-modeline
+    :init (doom-modeline-mode 1))
+#+end_src
+
+* Navigation
+
+Package that provides a generic completion mechanism.
+
+#+begin_src emacs-lisp
+  (use-package ivy
+    :init (ivy-mode 1)
+    :diminish
+    :bind (:map ivy-minibuffer-map
+		("TAB" . ivy-alt-done)
+		("C-j" . ivy-next-line)
+		("C-k" . ivy-previous-line)
+		:map ivy-switch-buffer-map
+		("C-k" . ivy-previous-line)
+		("C-l" . ivy-done)
+		("C-d" . ivy-switch-buffer-kill)
+		:map ivy-reverse-i-search-map
+		("C-k" . ivy-previous-line)
+		("C-d" . ivy-reverse-i-search-kill)))
+#+end_src
+
+Add description and key-binding to the listed functions in =M-x=.
+
+#+begin_src emacs-lisp
+  (use-package ivy-rich
+    :init (ivy-rich-mode 1))
+#+end_src
+
+=counsel= provides a collection of ivy-enhanced versions of common commands.
+
+#+begin_src emacs-lisp
+  (use-package counsel
+    :bind (("M-x" . counsel-M-x)
+	   ("C-x C-f" . counsel-find-file)
+	   ("C-h f" . counsel-describe-function)
+	   ("C-h v" . counsel-describe-variable)
+	   ("C-h l" . counsel-find-library)
+	   ("C-h i" . counsel-info-lookup-symbol)
+	   ("C-h u" . counsel-unicode-char)
+	   :map minibuffer-local-map
+	   ("C-r" . 'counsel-minibuffer-history)))
+#+end_src
+
+Displays the key bindings following my currently entered incomplete command.
+
+#+begin_src emacs-lisp
+  (use-package which-key
+    :init (which-key-mode)
+    :diminish
+    :config
+    (setq which-key-idle-delay 0.5))
+#+end_src
+
+Replaces built-in =other-window= by assigning each window a short, unique label.
+
+#+begin_src emacs-lisp
+  (use-package ace-window
+    :bind (("C-x o" . ace-window)))
+#+end_src
