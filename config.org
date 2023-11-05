@@ -410,7 +410,7 @@ Git user interface.
 Selectively hide/show code and comment blocks.
 
 #+begin_src emacs-lisp
-  (hs-minor-mode 1)
+  (add-hook 'prog-mode-hook #'hs-minor-mode)
   (global-set-key (kbd "C-c t") 'hs-toggle-hiding)
 #+end_src
 
