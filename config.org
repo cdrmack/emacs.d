@@ -502,3 +502,34 @@ I'm kinda pedantic, not gonna lie.
 #+begin_src shell
   rustup component add  rust-analyzer
 #+end_src
+
+* org-mode
+
+Where do I even start...
+
+#+begin_src emacs-lisp
+  (use-package org
+    :bind
+    (("C-c l" . org-store-link)
+     ("C-c a" . org-agenda)
+     ("C-c c" . org-capture)))
+
+  (setq org-agenda-files `(,org-directory))
+  (setq org-default-notes-file
+	(expand-file-name "notes.org" org-directory))
+
+  ;; files are relative to `org-directory` when not an absolute path
+  (setq org-capture-templates
+	'(("t" "Task" entry (file "tasks.org")
+	   "* TODO %?\n %i\n %a")
+	  ("p" "Project" entry (file "projects.org")
+	   "* %?\n %i\n %a")
+	  ("n" "Note" entry (file "notes.org")
+	   "* %?\n %i\n %a")))
+#+end_src
+
+Add gemini protocol to the org-mode export backend.
+
+#+begin_src emacs-lisp
+  (use-package ox-gemini)
+#+end_src
