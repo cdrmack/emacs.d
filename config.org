@@ -65,6 +65,12 @@ I can then use =M-n= and =M-p= in the minibuffer to scroll through it.
   (savehist-mode t)
 #+end_src
 
+Please replace the selection when I type!
+
+#+begin_src emacs-lisp
+  (delete-selection-mode t)
+#+end_src
+
 By default =zap-up-to-char= removes text from the current cursor position to a given char... including the char.
 I do not want that. Please leave this poor char alone!
 
@@ -178,6 +184,12 @@ Highlight the current line.
 
 #+begin_src emacs-lisp
   (global-hl-line-mode 1)
+#+end_src
+
+Operate by visual lines instead of logical lines.
+
+#+begin_src emacs-lisp
+  (global-visual-line-mode 1)
 #+end_src
 
 In my opinion font is a really important thing. I used to look at the code and wonder:
