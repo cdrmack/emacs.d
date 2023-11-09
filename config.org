@@ -533,3 +533,9 @@ Add gemini protocol to the org-mode export backend.
 #+begin_src emacs-lisp
   (use-package ox-gemini)
 #+end_src
+
+Add RSS 2.0 to the org-mode export backend.
+
+#+begin_src emacs-lisp
+  (use-package ox-rss)
+#+end_src
