@@ -486,6 +486,17 @@ I'm kinda pedantic, not gonna lie.
   (add-hook 'c++-mode-hook (lambda () (clang-format-save-hook-for-this-buffer)))
 #+end_src
 
+My default =.clang-format= file for C++.
+
+#+begin_example
+  BasedOnStyle: LLVM
+  IndentWidth: 4
+  ---
+  Language: Cpp
+  DerivePointerAlignment: false
+  PointerAlignment: Left
+#+end_example
+
 ** Rust
 
 =rustic= is based on =rust-mode= but provides additional features.
