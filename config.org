@@ -296,6 +296,36 @@ Replaces built-in =other-window= by assigning each window a short, unique label.
     :bind (("C-x o" . ace-window)))
 #+end_src
 
+Vim emulation!
+
+#+begin_src emacs-lisp
+  (use-package evil
+    :init
+    (setq evil-want-integration t)
+    (setq evil-want-keybinding nil)
+    (setq evil-want-C-u-scroll t) ;; replaces (universal-argument)
+    (setq evil-want-C-i-jump nil)
+    :config
+    (evil-mode 1)
+    (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+
+    (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+    (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+
+    (evil-set-initial-state 'eshell-mode 'emacs)
+    (evil-set-initial-state 'messages-buffer-mode 'normal)
+    (evil-set-initial-state 'dashboard-mode 'normal))
+#+end_src
+
+A set of =evil= keybindings for multiple modes.
+
+#+begin_src emacs-lisp
+  (use-package evil-collection
+    :after evil
+    :config
+    (evil-collection-init))
+#+end_src
+
 * Search
 
 ivy-enhanced alternative to the built-in isearch.
