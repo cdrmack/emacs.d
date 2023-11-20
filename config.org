@@ -174,10 +174,10 @@ I use doom-palenight theme.
 #+end_src
 
 Use and format various icon fonts withing Emacs.
-Run =M-x all-the-icons-install-fonts= when on a new machine.
+Run =M-x nerd-icons-install-fonts= when on a new machine.
 
 #+begin_src emacs-lisp
-  (use-package all-the-icons)
+  (use-package nerd-icons)
 #+end_src
 
 Highlight the current line.
