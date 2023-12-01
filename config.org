@@ -109,6 +109,12 @@ Same for the backup files.
 	kept-old-versions 2)
 #+end_src
 
+Cleanup whitespace on save.
+
+#+begin_src emacs-lisp
+  (add-hook 'before-save-hook 'whitespace-cleanup)
+#+end_src
+
 ** Packages Repositories
 
 In Emacs you can use more than one repository to download packages.
@@ -152,6 +158,12 @@ This is why I disable menu-bar, tool-bar and scroll-bars.
   (menu-bar-mode 0)
   (tool-bar-mode 0)
   (scroll-bar-mode 0)
+#+end_src
+
+Even though I do not use mouse in Emacs I decided to disable tooltips in a pop-up window.
+
+#+begin_src emacs-lisp
+  (tooltip-mode 0)
 #+end_src
 
 I also like to see line numbers always (almost) visible.
@@ -423,7 +435,7 @@ Project management and navigation.
 	    "occur-mode")))
 #+end_src
 
-TODO
+Counsel support for projectile.
 
 #+begin_src emacs-lisp
   (use-package counsel-projectile
@@ -541,6 +553,21 @@ My default =.clang-format= file for C++.
 
 #+begin_src shell
   rustup component add  rust-analyzer
+#+end_src
+
+** Common Lisp
+
+SLIME is the Superior Lisp Interaction Mode for Emacs.
+
+#+begin_src emacs-lisp
+  (use-package slime)
+#+end_src
+
+To use Quicklisp's SLIME we need to first install [[https://www.quicklisp.org][Quicklisp]] and then install =quicklisp-slime-helper=.
+
+#+begin_src emacs-lisp
+    (load (expand-file-name "~/quicklisp/slime-helper.el"))
+    (setq inferior-lisp-program "sbcl")
 #+end_src
 
 * org-mode
