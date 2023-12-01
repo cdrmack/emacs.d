@@ -30,10 +30,10 @@ Use =<escape>= globally to exit the current "mode".
   (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 #+end_src
 
-Flash the screen when I do something stupid. Still not sure if I like it.
+Do not flash the screen when I do something stupid.
 
 #+begin_src emacs-lisp
-  (setq visible-bell t)
+  (setq visible-bell nil)
 #+end_src
 
 I am also too lazy to write =yes= or =no= in different prompts.
@@ -48,7 +48,6 @@ Same goes when I am currently in the =dired-mode= and files' structure changes.
 
 #+begin_src emacs-lisp
   (global-auto-revert-mode t)
-  (add-hook 'dired-mode-hook 'auto-revert-mode)
 #+end_src
 
 =recentf-mode= - when enabled I can check the recently operated files with =M-x recentf-open-files=.
