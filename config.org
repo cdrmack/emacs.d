@@ -169,8 +169,8 @@ Even though I do not use mouse in Emacs I decided to disable tooltips in a pop-u
 I also like to see line numbers always (almost) visible.
 
 #+begin_src emacs-lisp
-  (setq column-number-mode t)
-  (setq line-number-mode t)
+  (column-number-mode t)
+  (global-display-line-numbers-mode t)
 
   (add-hook 'prog-mode-hook 'display-line-numbers-mode)
   (setq-default display-line-numbers-width 3)
@@ -335,6 +335,15 @@ A set of =evil= keybindings for multiple modes.
     :after evil
     :config
     (evil-collection-init))
+#+end_src
+
+Support for multiple cursors.
+
+#+begin_src emacs-lisp
+  (use-package evil-mc
+    :after evil
+    :config
+    (global-evil-mc-mode 1))
 #+end_src
 
 * Search
