@@ -484,8 +484,8 @@ Change some C and C++ defaults.
   (defun my-c-mode-hook ()
     (c-set-offset 'substatement-open 0)
     (setq c++-tab-always-indent t)
-    (setq c-basic-offset 4) ;; default is 2
-    (setq c-indent-level 4) ;; default is 2
+    (setq c-basic-offset 4)
+    (setq c-indent-level 4)
     (setq tab-width 4)
     (setq indent-tabs-mode nil)) ;; use spaces only
 
@@ -566,17 +566,15 @@ My default =.clang-format= file for C++.
 
 ** Common Lisp
 
-SLIME is the Superior Lisp Interaction Mode for Emacs.
+SLY is a direct fork of SLIME with some improvements.
 
 #+begin_src emacs-lisp
-  (use-package slime)
+  (use-package sly)
 #+end_src
 
-To use Quicklisp's SLIME we need to first install [[https://www.quicklisp.org][Quicklisp]] and then install =quicklisp-slime-helper=.
-
+Make sure to use =sbcl= program as an Common Lisp implementation.
 #+begin_src emacs-lisp
-    (load (expand-file-name "~/quicklisp/slime-helper.el"))
-    (setq inferior-lisp-program "sbcl")
+  (setq inferior-lisp-program "sbcl")
 #+end_src
 
 * org-mode
