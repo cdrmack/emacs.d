@@ -577,6 +577,14 @@ Make sure to use =sbcl= program as an Common Lisp implementation.
   (setq inferior-lisp-program "sbcl")
 #+end_src
 
+** VHDL
+
+Some extra support for the VHDL files.
+
+#+begin_src emacs-lisp
+  (use-package vhdl-ext)
+#+end_src
+
 * org-mode
 
 Where do I even start...
