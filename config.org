@@ -350,6 +350,18 @@ Support for multiple cursors.
 
 * Leader keys
 
+=hydra= is a package that can be used to tie related commands into a family of short bindings.
+I'm not yet sure if I need this.
+
+#+begin_src emacs-lisp
+  (use-package hydra)
+
+  (defhydra hydra-zoom (:timeout 4)
+    "zoom"
+    ("j" text-scale-increase "in")
+    ("k" text-scale-decrease "out"))
+#+end_src
+
 =general= provides convenient wrappers for more succinctly defining keybindings.
 
 Use =C-SPC= to display custom bindings.
@@ -384,6 +396,8 @@ Use =cdrmack/leader-keys= to define keybindings.
       "pa" '(projectile-ag :which-key "ag")
       "pk" '(projectile-kill-buffers :which-key "kill buffers")
       "ps" '(projectile-save-project-buffers :which-key "save buffers")
+
+      "s" '(hydra-zoom/body :which-key "zoom")
 
       "g" '(:ignore t :which-key "git")
       "gs" '(magit-status :which-key "status")
