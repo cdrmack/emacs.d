@@ -608,6 +608,35 @@ My default =.clang-format= file for C++.
   PointerAlignment: Left
 #+end_example
 
+** Common Lisp
+
+SLY is a direct fork of SLIME with some improvements.
+
+#+begin_src emacs-lisp
+  (use-package sly)
+#+end_src
+
+Make sure to use =sbcl= program as an Common Lisp implementation.
+
+#+begin_src emacs-lisp
+  (setq inferior-lisp-program "sbcl")
+#+end_src
+
+Helps to deal with parens pairs.
+
+#+begin_src emacs-lisp
+  (use-package smartparens
+    :hook (prog-mode text-mode markdown-mode)
+    :config
+    (require 'smartparens-config))
+#+end_src
+
+** Zig
+
+#+begin_src emacs-lisp
+  (use-package zig-mode)
+#+end_src
+
 ** Rust
 
 =rustic= is based on =rust-mode= but provides additional features.
@@ -623,19 +652,6 @@ My default =.clang-format= file for C++.
 
 #+begin_src shell
   rustup component add  rust-analyzer
-#+end_src
-
-** Common Lisp
-
-SLY is a direct fork of SLIME with some improvements.
-
-#+begin_src emacs-lisp
-  (use-package sly)
-#+end_src
-
-Make sure to use =sbcl= program as an Common Lisp implementation.
-#+begin_src emacs-lisp
-  (setq inferior-lisp-program "sbcl")
 #+end_src
 
 ** VHDL
