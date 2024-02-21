@@ -438,6 +438,38 @@ Selectively hide/show code and comment blocks.
   (global-set-key (kbd "C-c t") 'hs-toggle-hiding)
 #+end_src
 
+** Zig
+
+#+begin_src emacs-lisp
+  (use-package zig-mode)
+#+end_src
+
+** Rust
+
+=rustic= is based on =rust-mode= but provides additional features.
+
+#+begin_src emacs-lisp
+  (use-package rustic
+    :diminish
+    :config
+    (setq rustic-format-on-save nil))
+#+end_src
+
+=rust-analyzer= is an implementation of lsp for Rust. It can be installed with =rustup=.
+
+#+begin_src shell
+  rustup component add  rust-analyzer
+#+end_src
+
+** Clojure
+
+"Clojure Interactive Development Environment that Rocks"
+
+#+begin_src emacs-lisp
+  (use-package cider
+    :diminish)
+#+end_src
+
 ** C and C++
 
 Change some C and C++ defaults.
@@ -530,29 +562,6 @@ Helps to deal with parens pairs.
     :hook (prog-mode text-mode markdown-mode)
     :config
     (require 'smartparens-config))
-#+end_src
-
-** Zig
-
-#+begin_src emacs-lisp
-  (use-package zig-mode)
-#+end_src
-
-** Rust
-
-=rustic= is based on =rust-mode= but provides additional features.
-
-#+begin_src emacs-lisp
-  (use-package rustic
-    :diminish
-    :config
-    (setq rustic-format-on-save nil))
-#+end_src
-
-=rust-analyzer= is an implementation of lsp for Rust. It can be installed with =rustup=.
-
-#+begin_src shell
-  rustup component add  rust-analyzer
 #+end_src
 
 ** VHDL
