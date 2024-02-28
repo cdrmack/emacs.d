@@ -541,6 +541,20 @@ My default =.clang-format= file for C++.
   PointerAlignment: Left
 #+end_example
 
+** Scheme
+
+Enhanced REPL and a set of minor modes for Scheme.
+
+#+begin_src emacs-lisp
+  (use-package geiser)
+#+end_src
+
+Support for CHICKEN.
+
+#+begin_src emacs-lisp
+  (use-package geiser-chicken)
+#+end_src
+
 ** Common Lisp
 
 SLY is a direct fork of SLIME with some improvements.
