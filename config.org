@@ -253,48 +253,17 @@ Fancy mode-line.
     :init (doom-modeline-mode 1))
 #+end_src
 
-* Navigation
+* Completion
 
-Package that provides a generic completion mechanism.
-
-#+begin_src emacs-lisp
-  (use-package ivy
-    :diminish
-    :init (ivy-mode 1)
-    :bind (:map ivy-minibuffer-map
-		("TAB" . ivy-alt-done)
-		("C-j" . ivy-next-line)
-		("C-k" . ivy-previous-line)
-		:map ivy-switch-buffer-map
-		("C-k" . ivy-previous-line)
-		("C-l" . ivy-done)
-		("C-d" . ivy-switch-buffer-kill)
-		:map ivy-reverse-i-search-map
-		("C-k" . ivy-previous-line)
-		("C-d" . ivy-reverse-i-search-kill)))
-#+end_src
-
-Add description and key-binding to the listed functions in =M-x=.
+More fine-grained minibuffer completion feedback scheme.
 
 #+begin_src emacs-lisp
-  (use-package ivy-rich
-    :init (ivy-rich-mode 1))
-#+end_src
-
-=counsel= provides a collection of ivy-enhanced versions of common commands.
-
-#+begin_src emacs-lisp
-  (use-package counsel
-    :bind (("M-x" . counsel-M-x)
-	   ("C-M-j" . counsel-switch-buffer)
-	   ("C-x C-f" . counsel-find-file)
-	   ("C-h f" . counsel-describe-function)
-	   ("C-h v" . counsel-describe-variable)
-	   ("C-h l" . counsel-find-library)
-	   ("C-h i" . counsel-info-lookup-symbol)
-	   ("C-h u" . counsel-unicode-char)
-	   :map minibuffer-local-map
-	   ("C-r" . 'counsel-minibuffer-history)))
+  (use-package icomplete
+    :init
+    (icomplete-mode 1)
+    :config
+    (fido-mode 1)
+    (fido-vertical-mode 1))
 #+end_src
 
 Displays the key bindings following my currently entered incomplete command.
@@ -307,6 +276,8 @@ Displays the key bindings following my currently entered incomplete command.
     (setq which-key-idle-delay 0.5))
 #+end_src
 
+* Navigation
+
 Replaces built-in =other-window= by assigning each window a short, unique label.
 
 #+begin_src emacs-lisp
@@ -316,7 +287,7 @@ Replaces built-in =other-window= by assigning each window a short, unique label.
 
 * Search
 
-ivy-enhanced alternative to the built-in isearch.
+Enhanced alternative to the built-in isearch.
 
 #+begin_src emacs-lisp
     (use-package swiper)
@@ -393,6 +364,8 @@ Project management and navigation.
 
 #+begin_src emacs-lisp
   (use-package projectile
+    :init
+    (projectile-mode 1)
     :diminish
     :bind-keymap
     ("C-c p" . projectile-command-map)
@@ -410,14 +383,6 @@ Project management and navigation.
 	    "Buffer-menu-mode"
 	    "gnus-.*-mode"
 	    "occur-mode")))
-#+end_src
-
-Counsel support for projectile.
-
-#+begin_src emacs-lisp
-  (use-package counsel-projectile
-    :config
-    (counsel-projectile-mode t))
 #+end_src
 
 Git user interface.
@@ -445,6 +410,8 @@ Selectively hide/show code and comment blocks.
 #+end_src
 
 ** Zig
+
+Support for the Zig language.
 
 #+begin_src emacs-lisp
   (use-package zig-mode)
