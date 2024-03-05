@@ -30,6 +30,12 @@ Use =<escape>= globally to exit the current "mode".
   (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 #+end_src
 
+I prefer =ibuffer= over =list-buffers=.
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-x C-b") 'ibuffer)
+#+end_src
+
 Do not flash the screen when I do something stupid.
 
 #+begin_src emacs-lisp
