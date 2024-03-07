@@ -287,30 +287,12 @@ Replaces built-in =other-window= by assigning each window a short, unique label.
 
 * Search
 
-Enhanced alternative to the built-in isearch.
-
-#+begin_src emacs-lisp
-    (use-package swiper)
-#+end_src
-
 =avy= is a package that helps with moving point all over Emacs.
 It has this cool feature to jump to the location with a single keystroke.
-How many characters are needed to trigger avy is controlled by the =ace-isearch= package.
 
 #+begin_src emacs-lisp
-  (use-package avy)
-#+end_src
-
-This is a minor mode that combines =isearch=, =avy= and =swiper=.
-Results are based on the length of the search query.
-
-#+begin_src emacs-lisp
-  (use-package ace-isearch
-    :diminish
-    :init
-    (setq ace-isearch-jump-based-on-one-char t)
-    :config
-    (global-ace-isearch-mode 1))
+  (use-package avy
+    :bind (("C-;" . avy-goto-char)))
 #+end_src
 
 * Code
