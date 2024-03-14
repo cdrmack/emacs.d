@@ -391,6 +391,15 @@ Selectively hide/show code and comment blocks.
   (global-set-key (kbd "C-c t") 'hs-toggle-hiding)
 #+end_src
 
+Helps to deal with parens pairs.
+
+#+begin_src emacs-lisp
+  (use-package smartparens
+    :hook (prog-mode text-mode markdown-mode)
+    :config
+    (require 'smartparens-config))
+#+end_src
+
 ** C and C++
 
 Change some C and C++ defaults.
@@ -496,15 +505,6 @@ Support for the Zig language.
     :diminish)
 #+end_src
 
-Helps to deal with parens pairs.
-
-#+begin_src emacs-lisp
-  (use-package smartparens
-    :hook (prog-mode text-mode markdown-mode)
-    :config
-    (require 'smartparens-config))
-#+end_src
-
 ** Scheme
 
 Enhanced REPL and a set of minor modes for Scheme.
@@ -531,6 +531,14 @@ Make sure to use =sbcl= program as an Common Lisp implementation.
 
 #+begin_src emacs-lisp
   (setq inferior-lisp-program "sbcl")
+#+end_src
+
+** GDScript
+
+Scripting language used with the Godot Engine.
+
+#+begin_src emacs-lisp
+  (use-package gdscript-mode)
 #+end_src
 
 ** VHDL
