@@ -566,12 +566,12 @@ Where do I even start...
 
   ;; files are relative to `org-directory` when not an absolute path
   (setq org-capture-templates
-	'(("t" "Task" entry (file "tasks.org")
-	   "* TODO %?\n %i\n %a")
-	  ("p" "Project" entry (file "projects.org")
-	   "* %?\n %i\n %a")
-	  ("n" "Note" entry (file "notes.org")
-	   "* %?\n %i\n %a")))
+	'(("t" "Task" entry (file+headline "notes.org" "Tasks")
+	   "* TODO %?\n %i\n")
+	  ("p" "Project" entry (file+headline "notes.org" "Projects")
+	   "* %?\n %i\n")
+	  ("n" "Note" entry (file+headline "notes.org" "Notes")
+	   "* %?\n %i\n")))
 #+end_src
 
 Add gemini protocol to the org-mode export backend.
