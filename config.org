@@ -285,6 +285,13 @@ Replaces built-in =other-window= by assigning each window a short, unique label.
     :bind (("C-x o" . ace-window)))
 #+end_src
 
+Increase the selected region by semantic units.
+
+#+begin_src emacs-lisp
+  (use-package expand-region
+    :bind ("C-=" . er/expand-region))
+#+end_src
+
 * Search
 
 =avy= is a package that helps with moving point all over Emacs.
