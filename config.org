@@ -304,6 +304,12 @@ It has this cool feature to jump to the location with a single keystroke.
 
 * Code
 
+Disable tabs globally. Previously this was hooked only to the C and C++ mode hooks but tabs were being automatically inserted in org-mode source blocks.
+
+#+begin_src emacs-lisp
+  (setq indent-tabs-mode nil)
+#+end_src
+
 Enable colorful delimiters for all programming-related modes.
 
 #+begin_src emacs-lisp
@@ -417,8 +423,7 @@ Change some C and C++ defaults.
     (setq c++-tab-always-indent t)
     (setq c-basic-offset 4)
     (setq c-indent-level 4)
-    (setq tab-width 4)
-    (setq indent-tabs-mode nil)) ;; use spaces only
+    (setq tab-width 4))
 
   (add-hook 'c-mode-common-hook 'my-c-mode-hook)
 
