@@ -512,6 +512,14 @@ Support for the Zig language.
   rustup component add rust-analyzer
 #+end_src
 
+** Solidity
+
+Language used to work with Ethereum Virtual Machine.
+
+#+begin_src emacs-lisp
+  (use-package solidity-mode)
+#+end_src
+
 ** Clojure
 
 "Clojure Interactive Development Environment that Rocks"
