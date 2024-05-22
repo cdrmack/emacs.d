@@ -292,6 +292,10 @@ Increase the selected region by semantic units.
     :bind ("C-=" . er/expand-region))
 #+end_src
 
+#+begin_src emacs-lisp
+  (use-package multiple-cursors)
+#+end_src
+
 * Search
 
 =avy= is a package that helps with moving point all over Emacs.
