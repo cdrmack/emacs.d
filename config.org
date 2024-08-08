@@ -517,7 +517,15 @@ Support for the Zig language.
 Language used to work with Ethereum Virtual Machine.
 
 #+begin_src emacs-lisp
-  (use-package solidity-mode)
+  (use-package solidity-mode
+    :diminish)
+
+  (defun my-solidity-mode-hook ()
+    (setq-default indent-tabs-mode nil)
+    (setq c-basic-indent 4)
+    (setq tab-width 4))
+
+  (add-hook 'solidity-mode-hook 'my-solidity-mode-hook)
 #+end_src
 
 ** Clojure
