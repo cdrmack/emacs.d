@@ -24,6 +24,23 @@ However it can be changed by modyfing the =custom-file= variable.
   (load custom-file 'noerror 'nomessage)
 #+end_src
 
+Store autosave files in a specific directory.
+
+#+begin_src emacs-lisp
+  (setq auto-save-file-name-transforms
+	`((".*" ,(concat user-emacs-directory "auto-save/") t)))
+#+end_src
+
+Same for the backup files.
+
+#+begin_src emacs-lisp
+  (setq backup-by-copying t
+	backup-directory-alist `(("." . ,(concat user-emacs-directory "backups/")))
+	delete-old-versions t
+	kept-new-versions 6
+	kept-old-versions 2)
+#+end_src
+
 Use =<escape>= globally to exit the current "mode".
 
 #+begin_src emacs-lisp
@@ -98,23 +115,6 @@ I like to know what time it is.
   (display-time-mode t)
 #+end_src
 
-Store autosave files in a specific directory.
-
-#+begin_src emacs-lisp
-  (setq auto-save-file-name-transforms
-	`((".*" ,(concat user-emacs-directory "auto-save/") t)))
-#+end_src
-
-Same for the backup files.
-
-#+begin_src emacs-lisp
-  (setq backup-by-copying t
-	backup-directory-alist `(("." . ,(concat user-emacs-directory "backups/")))
-	delete-old-versions t
-	kept-new-versions 6
-	kept-old-versions 2)
-#+end_src
-
 Cleanup whitespace on save.
 
 #+begin_src emacs-lisp
@@ -136,16 +136,6 @@ Repositories are stored in the variable called =package-archives=.
 
   (unless package-archive-contents
     (package-refresh-contents))
-#+end_src
-
-I use =use-package= to keep all my packages clean and sexy.
-Before I will use it I need to install it though since it's not a built-in package.
-
-#+begin_src emacs-lisp
-  (unless (package-installed-p 'use-package)
-    (package-install 'use-package))
-
-  (require 'use-package)
 #+end_src
 
 The =:ensure= keyword causes the package to be installed automatically if not already present in the system.
