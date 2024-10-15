@@ -170,6 +170,7 @@ I also like to see line numbers always (almost) visible.
 
   (add-hook 'prog-mode-hook 'display-line-numbers-mode)
   (setq-default display-line-numbers-width 3)
+  (setq display-line-numbers-type 'relative)
 #+end_src
 
 I use doom-palenight theme.
@@ -202,8 +203,8 @@ Operate by visual lines instead of logical lines.
 In my opinion font is a really important thing. I used to look at the code and wonder:
 
 #+begin_quote
-Is it a big O or 0?
-Is it l (small L) or maybe I (capital i)?
+Is it a big O (letter 'o') or 0 (zero)?
+Is it l (small letter 'L') or maybe I (capital 'i')?
 #+end_quote
 
 Well... not anymore! I highly encourage you to take your time and find a font that suits your needs.
@@ -462,8 +463,13 @@ I'm kinda pedantic, not gonna lie.
 	      ;; buffer local hook
 	      t))
 
-  (add-hook 'c-mode-hook (lambda () (clang-format-save-hook-for-this-buffer)))
-  (add-hook 'c++-mode-hook (lambda () (clang-format-save-hook-for-this-buffer)))
+  (add-hook 'c-mode-hook
+	    (lambda ()
+	      (clang-format-save-hook-for-this-buffer)))
+
+  (add-hook 'c++-mode-hook
+	    (lambda ()
+	      (clang-format-save-hook-for-this-buffer)))
 #+end_src
 
 My default =.clang-format= file for C++.
