@@ -459,13 +459,10 @@ Support for the Zig language.
 
 ** Rust
 
-=rustic= is based on =rust-mode= but provides additional features.
+Support for the Rust language.
 
 #+begin_src emacs-lisp
-  (use-package rustic
-    :diminish
-    :config
-    (setq rustic-format-on-save nil))
+  (use-package rust-mode)
 #+end_src
 
 ** Solidity
