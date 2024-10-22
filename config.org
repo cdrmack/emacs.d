@@ -396,8 +396,8 @@ Change some C and C++ defaults.
 
   (add-hook 'c-mode-common-hook 'my-c-mode-hook)
 
-  (add-hook 'c-mode-hook 'lsp)
-  (add-hook 'c++-mode-hook 'lsp)
+  ;; (add-hook 'c-mode-hook 'lsp)
+  ;; (add-hook 'c++-mode-hook 'lsp)
 
   (setq gc-cons-threshold (* 100 1024 1024)
 	read-process-output-max (* 1024 1024))
