@@ -441,16 +441,18 @@ I'm kinda pedantic, not gonna lie.
 	      (clang-format-save-hook-for-this-buffer)))
 #+end_src
 
-My default =.clang-format= file for C++.
+My default =.clang-format= file for C.
 
 #+begin_example
+  Language: Cpp
   BasedOnStyle: LLVM
   IndentWidth: 4
-  ---
-  Language: Cpp
   DerivePointerAlignment: false
-  PointerAlignment: Left
+  PointerAlignment: Right
+  BreakBeforeBraces: Allman
 #+end_example
+
+=Language: Cpp= is used for both: C and C++. More options can be found on the [[https://clang.llvm.org/docs/ClangFormatStyleOptions.html][official page]].
 
 ** Zig
 
