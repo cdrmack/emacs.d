@@ -142,6 +142,7 @@ The =:ensure= keyword causes the package to be installed automatically if not al
 The variable below makes sure that setting is set by default for all packages.
 
 #+begin_src emacs-lisp
+  (require 'use-package-ensure)
   (setq use-package-always-ensure t)
 #+end_src
 
@@ -177,7 +178,7 @@ I use doom-palenight theme.
 
 #+begin_src emacs-lisp
   (use-package doom-themes
-    :init
+    :config
     (load-theme 'doom-palenight t))
 #+end_src
 
