@@ -303,10 +303,12 @@ It has this cool feature to jump to the location with a single keystroke.
 
 * Code
 
-I prefer spaces over tabs.
+Package for =.editorconfig=. It helps to define and maintain coding style.
 
 #+begin_src emacs-lisp
-  (setq-default indent-tabs-mode nil)
+  (use-package editorconfig
+    :config
+    (editorconfig-mode 1))
 #+end_src
 
 Enable colorful delimiters for all programming-related modes.
