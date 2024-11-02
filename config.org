@@ -478,31 +478,6 @@ Support for the Rust language.
   (use-package rust-mode)
 #+end_src
 
-** Solidity
-
-Language used to work with Ethereum Virtual Machine.
-
-#+begin_src emacs-lisp
-  (use-package solidity-mode
-    :diminish)
-
-  (defun my-solidity-mode-hook ()
-    (setq-default indent-tabs-mode nil)
-    (setq c-basic-indent 4)
-    (setq tab-width 4))
-
-  (add-hook 'solidity-mode-hook 'my-solidity-mode-hook)
-#+end_src
-
-** Clojure
-
-"Clojure Interactive Development Environment that Rocks"
-
-#+begin_src emacs-lisp
-  (use-package cider
-    :diminish)
-#+end_src
-
 ** Scheme
 
 Enhanced REPL and a set of minor modes for Scheme.
@@ -515,20 +490,6 @@ Support for CHICKEN.
 
 #+begin_src emacs-lisp
   (use-package geiser-chicken)
-#+end_src
-
-** Common Lisp
-
-SLY is a direct fork of SLIME with some improvements.
-
-#+begin_src emacs-lisp
-  (use-package sly)
-#+end_src
-
-Make sure to use =sbcl= program as an Common Lisp implementation.
-
-#+begin_src emacs-lisp
-  (setq inferior-lisp-program "sbcl")
 #+end_src
 
 * org-mode
