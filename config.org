@@ -330,26 +330,7 @@ For example it underlines and additionaly gives some comments about the issue.
 Project management and navigation.
 
 #+begin_src emacs-lisp
-  (use-package projectile
-    :init
-    (projectile-mode 1)
-    :diminish
-    :bind-keymap
-    ("C-c p" . projectile-command-map)
-    :init
-    (setq projectile-enable-caching t)
-    ;; ignoring specific buffers by name
-    (setq projectile-globally-ignored-buffers
-          '("*scratch*"
-            "*lsp-log*"))
-    ;; ignoring buffers by their major mode
-    (setq projectile-globally-ignored-modes
-          '("help-mode"
-            "erc-mode"
-            "completion-list-mode"
-            "Buffer-menu-mode"
-            "gnus-.*-mode"
-            "occur-mode")))
+  (use-package project)
 #+end_src
 
 Git user interface.
