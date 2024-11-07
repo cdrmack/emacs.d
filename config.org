@@ -102,8 +102,8 @@ I do not want that. Please leave this poor char alone!
   (global-set-key (kbd "M-z") 'zap-up-to-char)
 #+end_src
 
-=saveplace= is a built-in package that allows saving the cursor position in a file.
-When I reopen the same file later on, the coursor will be set in the saved position.
+=saveplace= is a built-in package that allows saving the point (cursor position) in a file.
+When I reopen the same file later on, the point will be set in the saved position.
 
 #+begin_src emacs-lisp
   (save-place-mode t)
@@ -123,7 +123,7 @@ Cleanup whitespace on save.
 
 ** Packages Repositories
 
-In Emacs you can use more than one repository to download packages.
+In Emacs it's possible to use more than one repository to download packages.
 Repositories are stored in the variable called =package-archives=.
 
 #+begin_src emacs-lisp
@@ -138,7 +138,7 @@ Repositories are stored in the variable called =package-archives=.
     (package-refresh-contents))
 #+end_src
 
-The =:ensure= keyword causes the package to be installed automatically if not already present in the system.
+The =:ensure= keyword (in =use-package=) causes the package to be installed automatically if not already present in the system.
 The variable below makes sure that setting is set by default for all packages.
 
 #+begin_src emacs-lisp
@@ -204,7 +204,7 @@ Operate by visual lines instead of logical lines.
 In my opinion font is a really important thing. I used to look at the code and wonder:
 
 #+begin_quote
-Is it a big O (letter 'o') or 0 (zero)?
+Is it a big O (letter 'o') or 0 (digit zero)?
 Is it l (small letter 'L') or maybe I (capital 'i')?
 #+end_quote
 
@@ -242,7 +242,8 @@ Fancy mode-line.
 
 #+begin_src emacs-lisp
   (use-package doom-modeline
-    :init (doom-modeline-mode 1))
+    :config
+    (doom-modeline-mode 1))
 #+end_src
 
 * Completion
@@ -262,7 +263,6 @@ Displays the key bindings following my currently entered incomplete command.
 
 #+begin_src emacs-lisp
   (use-package which-key
-    :diminish
     :init (which-key-mode)
     :config
     (setq which-key-idle-delay 0.5))
@@ -323,8 +323,7 @@ On-the-fly syntax checking, intended as replacement for the older =flymake=.
 For example it underlines and additionaly gives some comments about the issue.
 
 #+begin_src emacs-lisp
-  (use-package flycheck
-    :diminish)
+  (use-package flycheck)
 #+end_src
 
 Project management and navigation.
@@ -343,7 +342,6 @@ Git user interface.
 
 #+begin_src emacs-lisp
   (use-package company
-    :diminish
     :config
     (setq company-idle-delay 0.0)
     (setq company-minimum-prefix-length 1)
@@ -467,7 +465,7 @@ Enhanced REPL and a set of minor modes for Scheme.
   (use-package geiser)
 #+end_src
 
-Support for CHICKEN.
+Support for the CHICKEN.
 
 #+begin_src emacs-lisp
   (use-package geiser-chicken)
