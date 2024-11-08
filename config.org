@@ -73,12 +73,6 @@ Same goes when I am currently in the =dired-mode= and files' structure changes.
   (global-auto-revert-mode t)
 #+end_src
 
-=recentf-mode= - when enabled I can check the recently operated files with =M-x recentf-open-files=.
-
-#+begin_src emacs-lisp
-  (recentf-mode t)
-#+end_src
-
 Save minibuffer history to the =savehist-file=.
 I can then use =M-n= and =M-p= in the minibuffer to scroll through it.
 
