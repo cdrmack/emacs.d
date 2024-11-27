@@ -244,10 +244,7 @@ More fine-grained minibuffer completion feedback scheme.
 
 #+begin_src emacs-lisp
   (use-package icomplete
-    :init
-    (icomplete-mode 1)
     :config
-    (fido-mode 1)
     (fido-vertical-mode 1))
 #+end_src
 
