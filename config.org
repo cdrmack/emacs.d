@@ -209,9 +209,7 @@ I'm currently testing =Fira Code=.
 #+begin_src emacs-lisp
   (set-face-attribute 'default nil
                       :family "Fira Code"
-                      :height 120
-                      :weight 'normal
-                      :width 'normal)
+                      :height 120)
 #+end_src
 
 On FreeBSD it can be installed via =pkg(8)=.
