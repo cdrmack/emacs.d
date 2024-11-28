@@ -353,17 +353,16 @@ Helps to deal with parens pairs.
     (require 'smartparens-config))
 #+end_src
 
-Nowadays I use =exctags(1)= to navigate through the source code.
-On FreeBSD standard C header files are under =/usr/include/= and system's source code under =/usr/src/=.
+Sometimes I use =etags(1)= or =exctags(1)= to navigate through the source code.
+On FreeBSD, standard C header files are under =/usr/include/= and system's source code under =/usr/src/=.
 
 #+begin_src shell
-  exctags -f ~/.tags -R -e --languages=C,C++ /usr/include/ /usr/src/lib
+  find /usr/include/ -name "*.[chCH]" -print | etags -
 #+end_src
 
-I also do it per project.
-
 #+begin_src shell
-  exctags -f TAGS -R -e --languages=C,C++ /usr/include .
+  exctags -f TAGS -R -e --languages=C,C++ /usr/include/
+#+end_src
 #+end_src
 
 ** C and C++
