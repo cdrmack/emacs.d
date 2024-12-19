@@ -115,6 +115,12 @@ Cleanup whitespace on save.
   (add-hook 'before-save-hook 'whitespace-cleanup)
 #+end_src
 
+Do not suspend the frame.
+
+#+begin_src emacs-lisp
+  (global-unset-key (kbd "C-z"))
+#+end_src
+
 ** Packages Repositories
 
 In Emacs it's possible to use more than one repository to download packages.
