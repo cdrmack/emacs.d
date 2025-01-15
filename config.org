@@ -27,8 +27,9 @@ However it can be changed by modyfing the =custom-file= variable.
 Store autosave files in a specific directory.
 
 #+begin_src emacs-lisp
-  (setq auto-save-file-name-transforms
-        `((".*" ,(concat user-emacs-directory "auto-save/") t)))
+  (let ((auto-save-dir (expand-file-name "auto-save/" user-emacs-directory)))
+    (unless (file-exists-p auto-save-dir)
+      (make-directory auto-save-dir)))
 #+end_src
 
 Same for the backup files.
