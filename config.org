@@ -370,6 +370,18 @@ On FreeBSD, standard C header files are under =/usr/include/= and system's sourc
 #+begin_src shell
   exctags -f TAGS -R -e --languages=C,C++ /usr/include/
 #+end_src
+
+Built-in LSP client.
+
+#+begin_src emacs-lisp
+  (use-package eglot
+    ;; :hook
+    ;; (prog-mode . eglot-ensure)
+    ;; :bind
+    ;; (:map eglot-mode-map
+    ;;  ("C-c c a" . eglot-code-actions)
+    ;;  ("C-c c f" . eglot-format))
+    )
 #+end_src
 
 ** C and C++
@@ -378,6 +390,7 @@ Change some C and C++ defaults.
 
 #+begin_src emacs-lisp
   (defun my-c-mode-hook ()
+    ;; (setq-default indent-tabs-mode nil)
     (c-set-offset 'substatement-open 0)
     (setq c++-tab-always-indent t)
     (setq c-basic-offset 4)
@@ -394,6 +407,19 @@ Support for =CMake=.
 
 #+begin_src emacs-lisp
   (use-package cmake-mode)
+#+end_src
+
+=clangd= (LSP server) reads =compile_commands.json= (or =compile_flags.txt=) to get familiar with the project.
+The json file can be generated with =bear= that intercepts compiler calls.
+
+#+begin_src shell
+  bear -- make
+#+end_src
+
+=CMake= can generate it too when relevant variable is set in the =CMakeLists.txt=.
+
+#+begin_src cmake
+  set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 #+end_src
 
 I'm kinda pedantic, not gonna lie.
