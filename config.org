@@ -498,6 +498,14 @@ Support for the CHICKEN.
   (use-package geiser-chicken)
 #+end_src
 
+** TypeScript
+
+Support for TypeScript.
+
+#+begin_src emacs-lisp
+  (use-package typescript-mode)
+#+end_src
+
 * org-mode
 
 Where do I even start...
