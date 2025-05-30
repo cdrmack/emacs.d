@@ -358,6 +358,13 @@ Git user interface.
 
 I should check built-in =completion-preview-mode=.
 
+Parse control sequences for the compilation output.
+
+#+begin_src emacs-lisp
+  (use-package ansi-color
+    :hook (compilation-filter . ansi-color-compilation-filter))
+#+end_src
+
 Selectively hide/show code and comment blocks.
 
 #+begin_src emacs-lisp
