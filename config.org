@@ -30,6 +30,13 @@ However it can be changed by modyfing the =custom-file= variable.
   (load custom-file 'noerror 'nomessage)
 #+end_src
 
+Increase garbage collection threshold.
+
+#+begin_src emacs-lisp
+  (setq gc-cons-threshold (* 100 1024 1024)
+        read-process-output-max (* 1024 1024))
+#+end_src
+
 Store autosave files in a specific directory.
 
 #+begin_src emacs-lisp
@@ -126,6 +133,16 @@ Do not suspend the frame.
 
 #+begin_src emacs-lisp
   (global-unset-key (kbd "C-z"))
+#+end_src
+
+=elfeed= is an Atom/RSS feed reader.
+
+#+begin_src emacs-lisp
+  (use-package elfeed
+    :bind (("C-x w" . elfeed))
+    :config
+    (setq elfeed-feeds
+        '("https://cdrmack.dev/rss.xml")))
 #+end_src
 
 ** Packages Repositories
@@ -425,9 +442,6 @@ Change some C and C++ defaults.
     (setq tab-width 4))
 
   (add-hook 'c-mode-common-hook 'my-c-mode-hook)
-
-  (setq gc-cons-threshold (* 100 1024 1024)
-        read-process-output-max (* 1024 1024))
 #+end_src
 
 Support for =CMake=.
