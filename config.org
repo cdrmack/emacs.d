@@ -530,8 +530,13 @@ Enhanced REPL and a set of minor modes for Scheme.
 Support for the CHICKEN.
 
 #+begin_src emacs-lisp
-  (use-package geiser-chicken)
+  (use-package geiser-chicken
+    :config
+    (setq geiser-chicken-binary "chicken-csi"))
 #+end_src
+
+According to the official docs some eggs should be additionally installed:
+https://wiki.call-cc.org/emacs
 
 ** TypeScript
 
