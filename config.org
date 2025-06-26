@@ -521,6 +521,12 @@ Support for the Rust language.
 
 ** Scheme
 
+Keep parentheses balanced.
+
+#+begin_src emacs-lisp
+  (use-package paredit)
+#+end_src
+
 Enhanced REPL and a set of minor modes for Scheme.
 
 #+begin_src emacs-lisp
