@@ -544,14 +544,6 @@ Support for the CHICKEN.
 According to the official docs some eggs should be additionally installed:
 https://wiki.call-cc.org/emacs
 
-** TypeScript
-
-Support for TypeScript.
-
-#+begin_src emacs-lisp
-  (use-package typescript-mode)
-#+end_src
-
 * org-mode
 
 Where do I even start...
