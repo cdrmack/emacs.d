@@ -42,14 +42,19 @@ Store autosave files in a specific directory.
 #+begin_src emacs-lisp
   (let ((auto-save-dir (expand-file-name "auto-save/" user-emacs-directory)))
     (unless (file-exists-p auto-save-dir)
-      (make-directory auto-save-dir)))
+      (make-directory auto-save-dir))
+    (setq auto-save-file-name-transforms `((".*" ,auto-save-dir) t)))
 #+end_src
 
-Same for the backup files.
+Same for backup files.
 
 #+begin_src emacs-lisp
+  (let ((backup-dir (expand-file-name "backup/" user-emacs-directory)))
+    (unless (file-exists-p backup-dir)
+      (make-directory backup-dir))
+    (setq backup-directory-alist `(("." . ,backup-dir))))
+
   (setq backup-by-copying t
-        backup-directory-alist `(("." . ,(concat user-emacs-directory "backups/")))
         delete-old-versions t
         kept-new-versions 6
         kept-old-versions 2)
@@ -139,7 +144,7 @@ Do not suspend the frame.
 
 #+begin_src emacs-lisp
   (use-package elfeed
-    :bind (("C-x w" . elfeed))
+    :bind (("C-c w" . elfeed))
     :config
     (setq elfeed-feeds
         '("https://cdrmack.dev/rss.xml")))
