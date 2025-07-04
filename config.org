@@ -194,11 +194,9 @@ I also like to see line numbers always (almost) visible.
 
 #+begin_src emacs-lisp
   (column-number-mode t)
-  (global-display-line-numbers-mode t)
-
   (add-hook 'prog-mode-hook 'display-line-numbers-mode)
-  (setq-default display-line-numbers-width 3)
-  (setq display-line-numbers-type 'relative)
+  (setq display-line-numbers-width 3)
+  (setopt display-line-numbers-type 'relative)
 #+end_src
 
 I use doom-palenight theme.
