@@ -331,10 +331,22 @@ Package for =.editorconfig=. It helps to define and maintain coding style.
     (editorconfig-mode 1))
 #+end_src
 
-Major mode for markdown files.
+#+begin_src emacs-lisp
+  (use-package markdown-mode
+    :hook
+    ((markdown-mode . visual-line-mode)))
+#+end_src
 
 #+begin_src emacs-lisp
-  (use-package markdown-mode)
+  (use-package json-mode
+    :hook
+    ((json-mode . visual-line-mode)))
+#+end_src
+
+#+begin_src emacs-lisp
+  (use-package yaml-mode
+    :hook
+    ((yaml-mode . visual-line-mode)))
 #+end_src
 
 Enable colorful delimiters for all programming-related modes.
