@@ -223,7 +223,7 @@ Highlight the current line.
 Operate by visual lines instead of logical lines.
 
 #+begin_src emacs-lisp
-  (global-visual-line-mode 1)
+  (add-hook 'text-mode-hook 'visual-line-mode)
 #+end_src
 
 In my opinion font is a really important thing. I used to look at the code and wonder:
