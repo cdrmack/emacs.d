@@ -272,6 +272,7 @@ Fancy mode-line.
 * Completion
 
 More fine-grained minibuffer completion feedback scheme.
+Press =M-j= to exit minibuffer with the current input (ignores completion).
 
 #+begin_src emacs-lisp
   (use-package icomplete
@@ -358,7 +359,7 @@ Enable colorful delimiters for all programming-related modes.
 #+end_src
 
 On-the-fly syntax checking, intended as replacement for the older =flymake=.
-For example it underlines and additionaly gives some comments about the issue.
+For example it underlines and additionally gives some comments about the issue.
 
 #+begin_src emacs-lisp
   (use-package flycheck)
@@ -392,7 +393,8 @@ Parse control sequences for the compilation output.
 
 #+begin_src emacs-lisp
   (use-package ansi-color
-    :hook (compilation-filter . ansi-color-compilation-filter))
+    :hook
+    (compilation-filter . ansi-color-compilation-filter))
 #+end_src
 
 Selectively hide/show code and comment blocks.
@@ -553,36 +555,37 @@ https://wiki.call-cc.org/emacs
 Where do I even start...
 
 #+begin_src emacs-lisp
-  (use-package org
-    :bind
-    (("C-c l" . org-store-link)
-     ("C-c a" . org-agenda)
-     ("C-c c" . org-capture)))
-
-  (setq org-agenda-files `(,org-directory))
-  (setq org-default-notes-file
-        (expand-file-name "notes.org" org-directory))
-
-  ;; files are relative to `org-directory` when not an absolute path
-  (setq org-capture-templates
-        '(("t" "Task" entry (file+headline "notes.org" "Tasks")
-           "* TODO %?\n %i\n")
-          ("p" "Project" entry (file+headline "notes.org" "Projects")
-           "* %?\n %i\n")
-          ("n" "Note" entry (file+headline "notes.org" "Notes")
-           "* %?\n %i\n")))
+  (use-package org)
 #+end_src
 
-Add gemini protocol to the org-mode export backend.
+Add gemini protocol and RSS 2.0 to the org-mode export backend.
 
 #+begin_src emacs-lisp
   (use-package ox-gemini)
+  (use-package ox-rss)
 #+end_src
 
-Add RSS 2.0 to the org-mode export backend.
+Let's give =org-roam= a try.
+Static graph expects =graphviz= in the system.
 
 #+begin_src emacs-lisp
-  (use-package ox-rss)
+  (use-package org-roam
+    :custom
+    (org-roam-directory "~/.org/roam/")
+    :bind (("C-c n l" . org-roam-buffer-toggle)
+           ("C-c n f" . org-roam-node-find)
+           ("C-c n g" . org-roam-graph)
+           ("C-c n i" . org-roam-node-insert)
+           ("C-c n c" . org-roam-capture)
+           ;;dailies
+           ("C-c n j" . org-roam-dailies-capture-today))
+    :config
+    ;; more informative completion iterface for vertical completion framework
+    (setq org-roam-node-display-template
+        (concat "${title:*} "
+                (propertize "${tags:10}" 'face 'org-tag)))
+    (org-roam-db-autosync-mode)
+    (require 'org-roam-protocol))
 #+end_src
 
 * LLM
