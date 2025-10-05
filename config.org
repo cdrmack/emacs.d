@@ -583,6 +583,18 @@ Support for the CHICKEN.
 According to the official docs some eggs should be additionally installed:
 https://wiki.call-cc.org/emacs
 
+** Python
+
+#+begin_src emacs-lisp
+  (use-package python-mode)
+#+end_src
+
+** Haskell
+
+#+begin_src emacs-lisp
+  (use-package haskell-mode)
+#+end_src
+
 * org-mode
 
 Where do I even start...
