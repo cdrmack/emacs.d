@@ -140,6 +140,12 @@ Do not suspend the frame.
   (global-unset-key (kbd "C-z"))
 #+end_src
 
+Help with the indentation.
+
+#+begin_src emacs-lisp
+  (electric-indent-mode 1)
+#+end_src
+
 =elfeed= is an Atom/RSS feed reader.
 
 #+begin_src emacs-lisp
@@ -361,7 +367,9 @@ On-the-fly syntax checking, intended as replacement for the older =flymake=.
 For example it underlines and additionally gives some comments about the issue.
 
 #+begin_src emacs-lisp
-  (use-package flycheck)
+  (use-package flycheck
+    :hook
+    (scheme-mode . flycheck-mode))
 #+end_src
 
 Project management and navigation.
@@ -562,7 +570,9 @@ Support for the Rust language.
 Keep parentheses balanced.
 
 #+begin_src emacs-lisp
-  (use-package paredit)
+  (use-package paredit
+    :hook
+    ((geiser-mode geiser-repl-mode) . paredit-mode))
 #+end_src
 
 Enhanced REPL and a set of minor modes for Scheme.
