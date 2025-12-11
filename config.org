@@ -245,7 +245,7 @@ I'm currently testing =Fira Code=.
 #+begin_src emacs-lisp
   (set-face-attribute 'default nil
                       :family "Fira Code"
-                      :height 120)
+                      :height 180) ;; 240 for 4K, 120 for FullHD
 #+end_src
 
 On FreeBSD it can be installed via =pkg(8)=.
@@ -526,14 +526,6 @@ I'm kinda pedantic, not gonna lie.
               nil
               ;; buffer local hook
               t))
-
-  (add-hook 'c-mode-hook
-            (lambda ()
-              (clang-format-save-hook-for-this-buffer)))
-
-  (add-hook 'c++-mode-hook
-            (lambda ()
-              (clang-format-save-hook-for-this-buffer)))
 #+end_src
 
 My default =.clang-format= file for C.
@@ -650,6 +642,8 @@ LLM chat client.
   (use-package gptel
     :bind
     ("C-c l" . gptel-menu))
+
+  (gptel-make-gh-copilot "Copilot")
 #+end_src
 
 I should probably also test =ellama= package.
