@@ -245,7 +245,7 @@ I'm currently testing =Fira Code=.
 #+begin_src emacs-lisp
   (set-face-attribute 'default nil
                       :family "Fira Code"
-                      :height 180) ;; 240 for 4K, 120 for FullHD
+                      :height 120) ;; 240 for 4K, 120 for FullHD
 #+end_src
 
 On FreeBSD it can be installed via =pkg(8)=.
