@@ -48,7 +48,8 @@
 (global-completion-preview-mode 1)
 
 ;; minibuffer
-(icomplete-mode 1)
+;;(icomplete-mode 0)
+(fido-mode 1)
 (fido-vertical-mode 1)
 
 ;; external packages
