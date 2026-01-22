@@ -34,8 +34,6 @@
 
 ;; (global-unset-key (kbd "C-z"))
 
-(load-theme 'wombat)
-
 (column-number-mode t)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
@@ -57,6 +55,14 @@
 ;; minibuffer
 (fido-mode 1)
 (fido-vertical-mode 1)
+
+;; look
+(load-theme 'wombat)
+
+(when (display-graphic-p)
+  (set-face-attribute 'default nil
+                      :family "Fira Code"
+                      :height 120))
 
 ;; external packages
 (require 'magit)
