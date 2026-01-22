@@ -2,8 +2,8 @@
 
 (require 'package)
 (setq package-archives '(("elpa" . "https://elpa.gnu.org/packages/")
-			 ("melpa" . "https://melpa.org/packages/")
-			 ("org" . "https://orgmode.org/elpa/")))
+                         ("melpa" . "https://melpa.org/packages/")
+                         ("org" . "https://orgmode.org/elpa/")))
 
 (package-initialize)
 
@@ -47,8 +47,14 @@
 
 (global-completion-preview-mode 1)
 
+;; don't use tabs
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+
+(add-hook 'makefile-mode-hook
+          (lambda () (setq indent-tabs-mode t)))
+
 ;; minibuffer
-;;(icomplete-mode 0)
 (fido-mode 1)
 (fido-vertical-mode 1)
 
