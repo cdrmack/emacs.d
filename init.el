@@ -73,11 +73,12 @@
                       :height 120))
 
 ;; tree sitter
-(setq major-mode-remap-alist
-      '((bash-mode . bash-ts-mode)
-        (c-mode . c-ts-mode)
-        (c++-mode . c++-ts-mode)
-        (json-mode . json-ts-mode)))
+(when (treesit-available-p)
+  (setq major-mode-remap-alist
+        '((bash-mode . bash-ts-mode)
+          (c-mode . c-ts-mode)
+          (c++-mode . c++-ts-mode)
+          (json-mode . json-ts-mode))))
 
 ;; json
 (add-hook 'json-ts-mode-hook
