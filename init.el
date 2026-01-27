@@ -19,7 +19,6 @@
 
 ;;(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 ;;(global-unset-key (kbd "C-z"))
-;;(add-hook 'text-mode-hook 'visual-line-mode)
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
@@ -30,11 +29,11 @@
 (global-auto-revert-mode t)
 (delete-selection-mode t)
 
-(which-key-mode 1)
+(which-key-mode t)
 (setq which-key-idle-delay 1.0)
 
 ;; completion
-(global-completion-preview-mode 1)
+(global-completion-preview-mode t)
 
 ;; don't use tabs
 (setq-default indent-tabs-mode nil)
@@ -44,8 +43,8 @@
           (lambda () (setq indent-tabs-mode t)))
 
 ;; minibuffer
-(fido-mode 1)
-(fido-vertical-mode 1)
+(fido-mode t)
+(fido-vertical-mode t)
 
 ;; look
 (menu-bar-mode 0)
@@ -57,10 +56,12 @@
 
 (column-number-mode t)
 
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
-(add-hook 'prog-mode-hook 'electric-pair-mode)
+;;(setopt display-line-numbers-width 3)
 
-(setopt display-line-numbers-width 3)
+(add-hook 'prog-mode-hook
+          (lambda ()
+            (display-line-numbers-mode t)
+            (electric-pair-mode t)))
 
 (add-hook 'text-mode-hook 'visual-line-mode)
 
@@ -81,13 +82,13 @@
 ;; json
 (add-hook 'json-ts-mode-hook
           (lambda ()
-            (flymake-mode 1)
+            (flymake-mode t)
             (add-hook 'before-save-hook 'json-pretty-print-buffer)))
 
 ;; external packages
 (use-package magit
   :ensure t
-  :bind (("C-c g" . 'magit-status)))
+  :bind (("C-x g" . 'magit-status)))
 
 (use-package multiple-cursors
   :ensure t
@@ -100,4 +101,4 @@
 
 (use-package ace-window
   :ensure t
-  :bind (("C-c o" . ace-window)))
+  :bind (("C-x o" . ace-window)))
