@@ -1,20 +1,19 @@
 ;; -*- lexical-binding: t; -*-
 
-(require 'package)
-(setq package-archives '(("elpa" . "https://elpa.gnu.org/packages/")
-                         ("melpa" . "https://melpa.org/packages/")
-                         ("org" . "https://orgmode.org/elpa/")))
-
-(package-initialize)
-
-(setq inhibit-startup-message t)
-(setq initial-scratch-message "")
-
 (setq custom-file
       (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file 'noerror 'nomessage)
 
-(setq gc-cons-threshold (* 100 1024 1024)
+(with-eval-after-load 'package
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
+
+(setopt inhibit-startup-message t)
+(setopt initial-scratch-message "")
+
+(setopt make-backup-files nil)
+(setopt create-lockfiles nil)
+
+(setopt gc-cons-threshold (* 100 1024 1024)
   read-process-output-max (* 1024 1024))
 
 ;;(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -30,38 +29,44 @@
 (delete-selection-mode t)
 
 (which-key-mode t)
-(setq which-key-idle-delay 1.0)
-
-;; completion
-(global-completion-preview-mode t)
+(setopt which-key-idle-delay 1.0)
 
 ;; don't use tabs
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
+(setq-default indent-tabs-mode nil
+              tab-width 4)
 
 (add-hook 'makefile-mode-hook
           (lambda () (setq indent-tabs-mode t)))
+
+;; completion
+;;(global-completion-preview-mode t)
+
+(setopt completion-auto-help 'always)
+(setopt completion-auto-select 'second-tab)
+(setopt completions-max-height 20)
+(setopt completions-format 'one-column)
+
+(setopt tab-always-indent 'complete)
+
+;;(setopt completion-cycle-threshold 1)                  ; TAB cycles candidates
+;;(setopt completions-detailed t)                        ; Show annotations
+;;(setopt completions-group t)
 
 ;; minibuffer
 (fido-mode t)
 (fido-vertical-mode t)
 
 ;; look
-(menu-bar-mode 0)
-(tool-bar-mode 0)
-(scroll-bar-mode 0)
-(tooltip-mode 0)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(tooltip-mode -1)
 
-(setq visible-bell nil)
+(setopt visible-bell nil)
 
 (column-number-mode t)
 
 ;;(setopt display-line-numbers-width 3)
-
-(add-hook 'prog-mode-hook
-          (lambda ()
-            (display-line-numbers-mode t)
-            (electric-pair-mode t)))
 
 (add-hook 'text-mode-hook 'visual-line-mode)
 
@@ -72,9 +77,15 @@
                       :family "Fira Code Nerd Font Mono"
                       :height 120))
 
+;; code
+(add-hook 'prog-mode-hook
+          (lambda ()
+            (display-line-numbers-mode t)
+            (electric-pair-mode t)))
+
 ;; tree sitter
 (when (treesit-available-p)
-  (setq major-mode-remap-alist
+  (setopt major-mode-remap-alist
         '((bash-mode . bash-ts-mode)
           (c-mode . c-ts-mode)
           (c++-mode . c++-ts-mode)
@@ -87,6 +98,7 @@
             (add-hook 'before-save-hook 'json-pretty-print-buffer)))
 
 ;; external packages
+;; (load-file (expand-file-name "external.el" user-emacs-directory))
 (use-package magit
   :ensure t
   :bind (("C-x g" . 'magit-status)))
