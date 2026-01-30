@@ -58,8 +58,6 @@
 
 ;; look
 (menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
 (tooltip-mode -1)
 
 (setopt visible-bell nil)
@@ -73,6 +71,8 @@
 (load-theme 'wombat)
 
 (when (display-graphic-p)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
   (set-face-attribute 'default nil
                       :family "Fira Code Nerd Font Mono"
                       :height 120))
@@ -85,11 +85,20 @@
 
 ;; tree sitter
 (when (treesit-available-p)
-  (setopt major-mode-remap-alist
+  (setq treesit-language-source-alist
+        '((bash "https://github.com/tree-sitter/tree-sitter-bash")
+          (c "https://github.com/tree-sitter/tree-sitter-c")
+          (cpp "https://github.com/tree-sitter/tree-sitter-cpp")
+          (json "https://github.com/tree-sitter/tree-sitter-json")
+          (python "https://github.com/tree-sitter/tree-sitter-python")
+          (rust "https://github.com/tree-sitter/tree-sitter-rust")))
+   (setopt major-mode-remap-alist
         '((bash-mode . bash-ts-mode)
           (c-mode . c-ts-mode)
           (c++-mode . c++-ts-mode)
-          (json-mode . json-ts-mode))))
+          (json-mode . json-ts-mode)
+          (python-mode . python-ts-mode)
+          (rust-mode . rust-ts-mode))))
 
 ;; json
 (add-hook 'json-ts-mode-hook
