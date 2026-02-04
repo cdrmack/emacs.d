@@ -83,6 +83,15 @@
             (display-line-numbers-mode t)
             (electric-pair-mode t)))
 
+;; compilation
+(setopt compilation-scroll-output t)
+
+(add-hook 'compilation-finish-functions
+          (lambda (buf str)
+            (if (string-match "abnormally" str)
+                (display-buffer buf)
+              (message "Compilation finished successfully!"))))
+
 ;; tree sitter
 (when (treesit-available-p)
   (setopt treesit-language-source-alist
@@ -108,44 +117,4 @@
             (add-hook 'before-save-hook 'json-pretty-print-buffer)))
 
 ;; external packages
-;; (load-file (expand-file-name "external.el" user-emacs-directory))
-(use-package magit
-  :ensure t
-  :bind (("C-x g" . 'magit-status)))
-
-(use-package multiple-cursors
-  :ensure t
-  :bind (("M-P" . 'mc/mark-previous-like-this)
-         ("M-N" . 'mc/mark-next-like-this)))
-
-(use-package avy
-  :ensure t
-  :bind (("C-;" . avy-goto-char)))
-
-(use-package ace-window
-  :ensure t
-  :bind (("C-x o" . ace-window)))
-
- ;; to be replaced with flymake
-(use-package flycheck
-  :ensure t)
-
-(use-package clang-format
-  :ensure t
-  :config (setopt clang-format-style "file"))
-
-(add-hook 'c-ts-mode-hook
-          (lambda ()
-            (add-hook 'before-save-hook 'clang-format-buffer)))
-
-(add-hook 'c++-ts-mode-hook
-          (lambda ()
-            (add-hook 'before-save-hook 'clang-format-buffer)))
-
-(setopt compilation-scroll-output t)
-
-(add-hook 'compilation-finish-functions
-          (lambda (buf str)
-            (if (string-match "abnormally" str)
-                (display-buffer buf)
-              (message "Compilation finished successfully!"))))
+(load-file (expand-file-name "external.el" user-emacs-directory))
