@@ -1,6 +1,6 @@
 ;; -*- lexical-binding: t; -*-
 
-(setq custom-file
+(setopt custom-file
       (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file 'noerror 'nomessage)
 
@@ -32,16 +32,16 @@
 (setopt which-key-idle-delay 1.0)
 
 ;; don't use tabs
-(setq-default indent-tabs-mode nil
+(setopt indent-tabs-mode nil
               tab-width 4)
 
 (add-hook 'makefile-mode-hook
-          (lambda () (setq indent-tabs-mode t)))
+          (lambda () (setopt indent-tabs-mode t)))
 
 ;; completion
 ;;(global-completion-preview-mode t)
 
-(setopt completion-auto-help 'always)
+;;(setopt completion-auto-help 'always)
 (setopt completion-auto-select 'second-tab)
 (setopt completions-max-height 20)
 (setopt completions-format 'one-column)
@@ -85,7 +85,7 @@
 
 ;; tree sitter
 (when (treesit-available-p)
-  (setq treesit-language-source-alist
+  (setopt treesit-language-source-alist
         '((bash "https://github.com/tree-sitter/tree-sitter-bash")
           (c "https://github.com/tree-sitter/tree-sitter-c")
           (cpp "https://github.com/tree-sitter/tree-sitter-cpp")
@@ -103,7 +103,8 @@
 ;; json
 (add-hook 'json-ts-mode-hook
           (lambda ()
-            (flymake-mode t)
+            ;; (flymake-mode t)
+            (flycheck-mode t)
             (add-hook 'before-save-hook 'json-pretty-print-buffer)))
 
 ;; external packages
@@ -124,3 +125,27 @@
 (use-package ace-window
   :ensure t
   :bind (("C-x o" . ace-window)))
+
+ ;; to be replaced with flymake
+(use-package flycheck
+  :ensure t)
+
+(use-package clang-format
+  :ensure t
+  :config (setopt clang-format-style "file"))
+
+(add-hook 'c-ts-mode-hook
+          (lambda ()
+            (add-hook 'before-save-hook 'clang-format-buffer)))
+
+(add-hook 'c++-ts-mode-hook
+          (lambda ()
+            (add-hook 'before-save-hook 'clang-format-buffer)))
+
+(setopt compilation-scroll-output t)
+
+(add-hook 'compilation-finish-functions
+          (lambda (buf str)
+            (if (string-match "abnormally" str)
+                (display-buffer buf)
+              (message "Compilation finished successfully!"))))
