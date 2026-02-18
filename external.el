@@ -21,13 +21,8 @@
   :ensure t
   :config (setopt clang-format-style "file"))
 
-(add-hook 'c-ts-mode-hook
-          (lambda ()
-            (add-hook 'before-save-hook 'clang-format-buffer)))
-
-(add-hook 'c++-ts-mode-hook
-          (lambda ()
-            (add-hook 'before-save-hook 'clang-format-buffer)))
+(add-hook 'c-ts-mode-hook #'clang-format-on-save-mode)
+(add-hook 'c++-ts-mode-hook #'clang-format-on-save-mode)
 
  ;; to be replaced with flymake
 (use-package flycheck
