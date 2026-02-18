@@ -116,7 +116,7 @@
           (lambda ()
             ;; (flymake-mode t)
             (flycheck-mode t)
-            (add-hook 'before-save-hook 'json-pretty-print-buffer)))
+            (add-hook 'before-save-hook 'json-pretty-print-buffer nil t)))
 
 ;; external packages
 (load-file (expand-file-name "external.el" user-emacs-directory))
