@@ -11,7 +11,8 @@
 
 (use-package avy
   :ensure t
-  :bind (("C-;" . avy-goto-char)))
+  :bind (("M-s c" . avy-goto-char)
+         ("M-s l" . avy-goto-line)))
 
 (use-package ace-window
   :ensure t

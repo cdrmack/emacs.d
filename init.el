@@ -19,7 +19,6 @@
 (savehist-mode t)
 
 ;;(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-;;(global-unset-key (kbd "C-z"))
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
@@ -38,7 +37,7 @@
               tab-width 4)
 
 (add-hook 'makefile-mode-hook
-          (lambda () (setopt indent-tabs-mode t)))
+          (lambda () (setopt indent-tabs-mode t)) nil t)
 
 ;; completion
 ;;(global-completion-preview-mode t)
@@ -66,7 +65,7 @@
 
 (column-number-mode t)
 
-;;(setopt display-line-numbers-width 3)
+(setopt display-line-numbers-width 3)
 
 (add-hook 'text-mode-hook 'visual-line-mode)
 
@@ -108,8 +107,7 @@
           (c-mode . c-ts-mode)
           (c++-mode . c++-ts-mode)
           (json-mode . json-ts-mode)
-          (python-mode . python-ts-mode)
-          (rust-mode . rust-ts-mode))))
+          (python-mode . python-ts-mode))))
 
 ;; json
 (add-hook 'json-ts-mode-hook
@@ -117,6 +115,9 @@
             ;; (flymake-mode t)
             (flycheck-mode t)
             (add-hook 'before-save-hook 'json-pretty-print-buffer nil t)))
+
+;; rust
+(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-ts-mode))
 
 ;; external packages
 (load-file (expand-file-name "external.el" user-emacs-directory))
